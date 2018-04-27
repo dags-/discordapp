@@ -1,12 +1,12 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 
 	"github.com/dags-/discordapp/bot"
 	"github.com/dags-/discordapp/command"
 	"github.com/dags-/discordapp/util"
-	"flag"
 )
 
 func main() {

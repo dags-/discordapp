@@ -1,13 +1,14 @@
 package command
 
 import (
-	"github.com/bwmarrin/discordgo"
-	"strings"
-	"sort"
 	"bytes"
+	"fmt"
+	"sort"
+	"strings"
+
+	"github.com/bwmarrin/discordgo"
 	"github.com/dags-/discordapp/util"
 	"github.com/pkg/errors"
-	"fmt"
 )
 
 type Manager struct {
