@@ -30,7 +30,7 @@ func New(auth *string) *Bot {
 }
 
 func (b *Bot) Connect() error {
-	b.session.AddHandler(b.cmdListener)
+	b.AddHandler(b.commandHandler)
 
 	e := b.session.Open()
 	if e != nil {
@@ -58,14 +58,12 @@ func (b *Bot) AddCommand(c *command.Command) *Bot {
 	return b
 }
 
-func (b *Bot) AddListener(hndlr ...interface{}) *Bot {
-	for _, h := range hndlr {
-		b.session.AddHandler(h)
-	}
+func (b *Bot) AddHandler(h interface{}) *Bot {
+	b.session.AddHandler(h)
 	return b
 }
 
-func (b *Bot) cmdListener(s *discordgo.Session, m *discordgo.MessageCreate) {
+func (b *Bot) commandHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	b.cmdLock.Lock()
 	defer b.cmdLock.Unlock()
 
