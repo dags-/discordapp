@@ -4,6 +4,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/pkg/errors"
 	"fmt"
+	"strings"
 )
 
 func GetRole(s *discordgo.Session, guild, role string) (*discordgo.Role, error) {
@@ -11,8 +12,9 @@ func GetRole(s *discordgo.Session, guild, role string) (*discordgo.Role, error) 
 	if err != nil {
 		return nil, err
 	}
+	role = strings.ToLower(role)
 	for _, r := range roles {
-		if r.Name == role {
+		if strings.ToLower(r.Name) == role {
 			return r, nil
 		}
 	}
@@ -61,7 +63,7 @@ func HasAllRoles(s *discordgo.Session, guild, user string, roles ...string) bool
 
 func indexOf(s string, in []string) int {
 	for i := 0; i < len(in); i++ {
-		if s == in[i] {
+		if strings.ToLower(s) == strings.ToLower(in[i]) {
 			return i
 		}
 	}
